@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інформаційні технології в науці</title>
+    <style>
+        /* Основні стилі */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #0d1117, #141b24);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Хедер */
+        header {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(to right, #0048ff, #00e6ff);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+            animation: rotateHeader 10s linear infinite;
+        }
+
+        @keyframes rotateHeader {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0;
+            opacity: 0.8;
+            animation: fadeIn 2s ease-out 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Меню навігації */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #141b24;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #00e6ff;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #00e6ff;
+            transition: all 0.3s;
+        }
+
+        nav a:hover::after {
+            left: 0;
+            width: 100%;
+        }
+
+        /* Банер */
+        .banner {
+            text-align: center;
+            padding: 6rem 1rem;
+            background: linear-gradient(to bottom, #0048ff, #0d1117);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            animation: textGlow 1.5s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px #00e6ff, 0 0 20px #00e6ff, 0 0 30px #0048ff;
+            }
+            to {
+                text-shadow: 0 0 20px #00e6ff, 0 0 30px #0048ff, 0 0 40px #0048ff;
+            }
+        }
+
+        .banner .btn {
+            display: inline-block;
+            margin: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #00e6ff;
+            color: #0d1117;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: #0048ff;
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        /* Текст статті */
+        #article {
+            display: none;
+            background-color: #1a2329;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Стиль для заголовку */
+        #article h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Стиль для тексту */
+        #article p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Підвал */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #0d1117;
+            color: #777;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #00e6ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Адаптація для мобільних */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .banner h2 {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav a {
+                margin: 0.5rem 0;
+            }
+
+            .banner .btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            #article p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Інформаційні технології в науці</h1>
+    </header>
+
+    <!-- Меню навігації -->
+    <nav>
+        <a href="index.html">ГОЛОВНА</a>
+        <a href="Інформаційні_Технології.html">Інформаційні Технології</a>
+        <a href="Еволюція_ІТ_у_науці.html">Еволюція ІТ у науці</a>
+        <a href="Застосування_ІТ.html">Застосування ІТ</a>
+        <a href="Перспективи_розвитку_ІТ.html">Перспективи розвитку ІТ</a>
+        <a href="Етика_в_застосуванні_ІТ.html">Етика в застосуванні ІТ</a>
+
+    </nav>
+
+    <!-- Банер -->
+    <section class="banner">
+        <h2>Перспективи розвитку ІТ</h2>
+        <a href="javascript:void(0);" class="btn" onclick="toggleArticle()">Читати статтю</a>
+    </section>
+
+    <!-- Текст статті -->
+    <section id="article">
+        <h2>Перспективи розвитку ІТ</h2>
+
+        <p>
+        Штучний інтелект (ШІ) та машинне навчання (ML) стають ключовими технологіями, які кардинально змінюють підходи до наукових досліджень та технічного прогресу. Зокрема, у медицині ШІ значно прискорює аналіз клінічних випробувань, допомагає прогнозувати ефективність ліків та створювати нові молекули, що дозволяє значно скоротити час, який раніше вимагав великих зусиль. Алгоритми, такі як IBM Watson Oncology та Google DeepMind, ефективно обробляють медичні зображення, підвищуючи точність діагностики, особливо в онкології.
+        </p>
+
+        <p>
+        Машинне навчання, зокрема сучасні методи, такі як глибокі нейронні мережі (CNN) та приховані моделі Маркова (HMM), показують високу ефективність при аналізі великих обсягів даних, що дозволяє виявляти приховані закономірності та проводити глибокі дослідження у таких галузях, як геноміка, екологія, соціальні науки та фізика. Ці алгоритми використовуються для аналізу послідовностей ДНК, обробки біологічних зображень та прогнозування поведінки складних систем. Самонавчальні алгоритми відкривають нові можливості для роботи з неанотованими даними, що веде до інноваційних проривів у науці.
+        </p>
+
+        <p>
+        Однією з важливих складових розвитку ІТ є робота з великими даними (Big Data), які стають основою для новітніх досліджень та рішень у різних сферах. Обсяги цих даних, що вимірюються від терабайтів до екзабайтів, генеруються через соціальні мережі, цифрові медіа, медичні записи та астрономічні дослідження. Головними характеристиками Big Data є обсяг (Volume), різноманітність (Variety) і швидкість (Velocity), що, зокрема, дозволяє обробляти дані телескопів для відкриття нових галактик або здійснювати аналіз медичної статистики для знаходження нових підходів до лікування захворювань.
+        </p>
+
+        <p>
+        Технології роботи з великими даними включають штучний інтелект, алгоритми машинного навчання та потужні розподілені системи обробки, що дають змогу автоматизувати процеси аналізу, виявляти приховані закономірності та прогнозувати різні події. Такі інструменти значно покращують медичну діагностику, дозволяючи точніше аналізувати генетичну інформацію та прискорювати створення нових методів лікування. Вони також знаходять застосування у фізиці та хімії для моделювання нових матеріалів, а в економіці — для розуміння та прогнозування ринкових тенденцій.
+        </p>
+
+        <p>
+        Вплив Big Data на науку є надзвичайно важливим та багатогранним, оскільки вони дозволяють інтегрувати дані з різних областей, таких як екологія, соціологія, економіка. Наприклад, поєднання екологічних і демографічних даних дозволяє прогнозувати вплив кліматичних змін на людські спільноти та аналізувати урбаністичні процеси. Крім того, Big Data стають незамінними у сфері екстреного реагування, зокрема для прогнозування природних катастроф та боротьби з пандеміями. Завдяки автоматизації обробки даних дослідники можуть швидше виявляти нові закономірності, що створює основу для інновацій, здатних змінити наше розуміння світу.
+        </p>
+    </section>
+
+    <footer>
+        <p><h2>Контакти</h2></p>
+        <p>
+        <a href="https://t.me/fghtyu6436" target="_blank">Telegram</a>
+</p>
+        <p>&copy; 2024  Надзіваний Богдан 4КН-24Б. Всі права захищені. <a href="#">UP</a></p>
+    </footer>
+
+    <script>
+        function toggleArticle() {
+            var article = document.getElementById("article");
+            article.style.display = (article.style.display === "none") ? "block" : "none";
+        }
+    </script>
+</body>
+</html>

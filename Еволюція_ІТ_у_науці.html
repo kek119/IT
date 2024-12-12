@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інформаційні технології в науці</title>
+    <style>
+        /* Основні стилі */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #0d1117, #141b24);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Хедер */
+        header {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(to right, #0048ff, #00e6ff);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+            animation: rotateHeader 10s linear infinite;
+        }
+
+        @keyframes rotateHeader {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0;
+            opacity: 0.8;
+            animation: fadeIn 2s ease-out 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Меню навігації */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #141b24;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #00e6ff;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #00e6ff;
+            transition: all 0.3s;
+        }
+
+        nav a:hover::after {
+            left: 0;
+            width: 100%;
+        }
+
+        /* Банер */
+        .banner {
+            text-align: center;
+            padding: 6rem 1rem;
+            background: linear-gradient(to bottom, #0048ff, #0d1117);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            animation: textGlow 1.5s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px #00e6ff, 0 0 20px #00e6ff, 0 0 30px #0048ff;
+            }
+            to {
+                text-shadow: 0 0 20px #00e6ff, 0 0 30px #0048ff, 0 0 40px #0048ff;
+            }
+        }
+
+        .banner .btn {
+            display: inline-block;
+            margin: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #00e6ff;
+            color: #0d1117;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: #0048ff;
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        /* Текст статті */
+        #article {
+            display: none;
+            background-color: #1a2329;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Стиль для заголовку */
+        #article h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Стиль для тексту */
+        #article p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Підвал */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #0d1117;
+            color: #777;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #00e6ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Адаптація для мобільних */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .banner h2 {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav a {
+                margin: 0.5rem 0;
+            }
+
+            .banner .btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            #article p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Інформаційні технології в науці</h1>
+    </header>
+
+    <!-- Меню навігації -->
+    <nav>
+        <a href="index.html">ГОЛОВНА</a>
+        <a href="Інформаційні_Технології.html">Інформаційні Технології</a>
+        <a href="Еволюція_ІТ_у_науці.html">Еволюція ІТ у науці</a>
+        <a href="Застосування_ІТ.html">Застосування ІТ</a>
+        <a href="Перспективи_розвитку_ІТ.html">Перспективи розвитку ІТ</a>
+        <a href="Етика_в_застосуванні_ІТ.html">Етика в застосуванні ІТ</a>
+
+    </nav>
+
+    <!-- Банер -->
+    <section class="banner">
+        <h2>Еволюція ІТ у науці</h2>
+        <a href="javascript:void(0);" class="btn" onclick="toggleArticle()">Читати статтю</a>
+    </section>
+
+    <!-- Текст статті -->
+    <section id="article">
+        <h2>Еволюція ІТ у науці</h2>
+
+        <p>
+        Еволюція інформаційних технологій у науці розпочалася з появи перших електронних комп’ютерів. Створений у 1946 році ENIAC, здатний виконувати близько 500 операцій за секунду, став революційним інструментом. Хоча його початковою метою було використання у військових цілях, він заклав основу для цифрових обчислень, які стали невід'ємною частиною наукових досліджень. Подальший розвиток технологій привів до появи суперкомп’ютерів, що здійснили революцію у складних розрахунках.
+           
+            
+            
+        </p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/ENIAC_Penn1.jpg/220px-ENIAC_Penn1.jpg" alt=""></p>
+        <p>
+        У 1970-х роках векторні суперкомп'ютери, такі як Cray-1 (1975), стали важливим кроком уперед. Вони дозволили моделювати фізичні процеси та обчислювати складні алгоритми зі швидкістю до 80 MFLOPS. Наступна модель, Cray-2 (1985), досягала швидкості майже 2 GFLOPS і використовувалася для моделювання клімату й аеродинаміки, що зробило ці комп’ютери незамінними для фундаментальних наукових досліджень.
+        </p>
+        <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Science_Museum_20180227_132902_%2849362732462%29.jpg/300px-Science_Museum_20180227_132902_%2849362732462%29.jpg" alt=""></p>
+        <p>
+        З 1990-х років розвиток суперкомп’ютерів зосередився на масштабованості та ефективності. Наприклад, Intel ASCI Red (1995) став першим, який перевищив швидкість 1 TFLOPS, а сучасні суперкомп’ютери, такі як Fugaku (2020), виконують квадрильйони операцій за секунду. Їхня потужність дозволяє проводити дослідження у біології, фізиці та інших галузях, аналізуючи величезні обсяги даних для моделювання клімату чи створення нових ліків.
+        </p>
+         <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/1985-Cray-2-side-view.jpg/220px-1985-Cray-2-side-view.jpg" alt=""></p>
+        <p>
+        Революційним досягненням став також винахід першого мікропроцесора Intel 4004 у 1971 році. Розроблений інженерами Intel, зокрема Федеріко Фаджіном, Тедом Хоффом і Стенлі Мазором, цей чип інтегрував процесорні функції на одному пристрої. Завдяки 2300 транзисторам і тактовій частоті 740 кГц він міг виконувати до 92 000 інструкцій за секунду. Intel 4004 заклав основу для створення сучасних комп’ютерів, зробивши їх компактними, енергоефективними та доступними.
+        </p>
+        <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Intel_C4004.jpg/220px-Intel_C4004.jpg" alt=""></p>
+        <p>
+        Іншою важливою віхою стала поява обчислювальної хмари. Концепція, запропонована ще в 1960-х роках Джоном Маккарті, реалізувалася у 2000-х завдяки віддаленим технологіям обчислення та зберігання даних. Запуск платформи Amazon Web Services (AWS) у 2006 році популяризував моделі IaaS (інфраструктура як послуга) і SaaS (програмне забезпечення як послуга). Обчислювальні хмари стали основою сучасних технологій, дозволяючи компаніям ефективно обробляти дані без необхідності інвестувати у власну інфраструктуру.
+        </p>
+
+        <p>
+        Від перших комп’ютерів до високопродуктивних обчислювальних систем і хмарних технологій, еволюція ІТ докорінно змінила підхід до наукових досліджень, зробивши їх швидшими, точнішими та доступнішими.
+        </p>
+
+
+    </section>
+
+    <footer>
+        <p><h2>Контакти</h2></p>
+        <p>
+        <a href="https://t.me/fghtyu6436" target="_blank">Telegram</a>
+</p>
+        <p>&copy; 2024  Надзіваний Богдан 4КН-24Б. Всі права захищені. <a href="#">UP</a></p>
+    </footer>
+
+    <script>
+        function toggleArticle() {
+            var article = document.getElementById("article");
+            article.style.display = (article.style.display === "none") ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
